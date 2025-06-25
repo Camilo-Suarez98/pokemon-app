@@ -28,3 +28,12 @@ export interface PokemonType {
 export interface PokemonListResponseType {
   results: Array<PokemonType>;
 }
+
+export interface PokemonGridProps {
+  pokemons: PokemonType[];
+}
+
+export interface PokemonModalProps {
+  pokemon: PokemonType;
+  onClose: () => void;
+}
