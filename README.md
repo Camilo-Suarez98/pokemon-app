@@ -6,9 +6,9 @@ Aplicación web construida con **React**, **TypeScript** y **Tailwind CSS** que 
 
 ## 🖼️ Captura de pantalla
 
-![imagen](./table-view.png)
-![imagen](./grid-view.png)
-![imagen](./modal-view.png)
+![imagen](https://github.com/user-attachments/assets/b40752a9-06a1-4deb-8e2f-068b139071ef)
+![imagen](https://github.com/user-attachments/assets/c2721c03-3af2-4014-84f6-9a6abba98bc3)
+![imagen](https://github.com/user-attachments/assets/c0914e95-e04a-4c2f-8720-d56a05b7bbf9)
 
 ---
 
