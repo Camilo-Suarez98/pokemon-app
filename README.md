@@ -6,9 +6,9 @@ Aplicación web construida con **React**, **TypeScript** y **Tailwind CSS** que 
 
 ## 🖼️ Captura de pantalla
 
-<img src="./table-view.png" alt="Captura de pantalla de la app Pokémon en vista de tabla" />
-<img src="./grid-view.png" alt="Captura de pantalla de la app Pokémon en vista de cuadrícula" />
-<img src="./modal-view.png" alt="Captura de pantalla de la app Pokémon en vista de modal" />
+![imagen](./table-view.png)
+![imagen](./grid-view.png)
+![imagen](./modal-view.png)
 
 ---
 
