@@ -76,6 +76,13 @@ button:focus-visible {
   }
 }
 
+.type-badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  text-transform: capitalize;
+}
+
 .type-badge.normal {
   background: #A8A878;
 }
