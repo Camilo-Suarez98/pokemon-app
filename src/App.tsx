@@ -6,28 +6,65 @@ import type { PokemonType } from './types/pokemon';
 import PokemonGrid from './components/PokemonGrid';
 import PokemonTable from './components/PokemonTable';
 import PokemonModal from './components/PokemonModal';
+import Loader from './components/Loader';
+import SwitchButton from './components/ui/SwitchButton';
 
 function App() {
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonType | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
 
   useEffect(() => {
     const loadPokemon = async () => {
-      const pokemon = await fetchAllPokemon();
-      setPokemons(pokemon);
+      try {
+        setIsLoading(true);
+        const pokemon = await fetchAllPokemon();
+        setPokemons(pokemon);
+      } finally {
+        setIsLoading(false);
+      }
     }
     loadPokemon();
-  }, [])
+  }, []);
 
   return (
     <div className="app">
-      <h1 className="font-bold">Pokémons </h1>
-      <PokemonTable pokemons={pokemons} onSelect={setSelectedPokemon} />
-      <PokemonGrid pokemons={pokemons} onSelect={setSelectedPokemon} />
-      {selectedPokemon && (
-        <PokemonModal pokemon={selectedPokemon} onClose={() => setSelectedPokemon(null)} />
-      )}
-    </div>
+      <img
+        src="pokemon-logo-2.png"
+        className="mx-auto max-w-[300px] w-full"
+        alt="Pokemon Logo"
+      />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="relative">
+          {viewMode === 'grid' ? (
+            <>
+              <SwitchButton
+                onClick={() => setViewMode('table')}
+                textButton="Switch to Table View"
+              />
+              <PokemonGrid pokemons={pokemons} onSelect={setSelectedPokemon} />
+            </>
+          ) : (
+            <>
+              <SwitchButton
+                onClick={() => setViewMode('grid')}
+                textButton="Switch to Grid View"
+              />
+              <PokemonTable pokemons={pokemons} onSelect={setSelectedPokemon} />
+            </>
+          )}
+        </div>
+      )
+      }
+      {
+        selectedPokemon && (
+          <PokemonModal pokemon={selectedPokemon} onClose={() => setSelectedPokemon(null)} />
+        )
+      }
+    </div >
   )
 }
 
