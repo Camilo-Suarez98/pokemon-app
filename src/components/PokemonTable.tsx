@@ -1,17 +1,10 @@
 import { useState } from "react";
 import DataTable, { type TableColumn } from "react-data-table-component";
+
 import CustomSelect from '../components/ui/Select';
 import type { PokemonProps, PokemonType } from "../types/pokemon";
-import { lowAndHighStats } from "../utils/stats";
-
-const toCapitalize = (str: string): string => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-const getStat = (pokemon: PokemonType, statName: string): number => {
-  const stat = pokemon.stats.find((s) => s.stat.name === statName);
-  return stat?.base_stat ?? 0;
-};
+import { lowAndHighStats, getStat } from "../utils/stats";
+import { toCapitalize } from "../utils/capitalize";
 
 const PokemonTable: React.FC<PokemonProps> = ({ pokemons, onSelect }) => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
@@ -156,7 +149,7 @@ const PokemonTable: React.FC<PokemonProps> = ({ pokemons, onSelect }) => {
     },
     {
       name: (
-        <p>
+        <p className="py-2">
           Special<br />Attack
         </p>
       ),
@@ -171,7 +164,7 @@ const PokemonTable: React.FC<PokemonProps> = ({ pokemons, onSelect }) => {
     },
     {
       name: (
-        <p>
+        <p className="py-2">
           Special <br /> Defense
         </p>
       ),
@@ -186,7 +179,7 @@ const PokemonTable: React.FC<PokemonProps> = ({ pokemons, onSelect }) => {
     },
     {
       name: (
-        <p>
+        <p className="py-2">
           Speed
         </p>
       ),
@@ -201,7 +194,7 @@ const PokemonTable: React.FC<PokemonProps> = ({ pokemons, onSelect }) => {
     },
     {
       name: (
-        <p>
+        <p className="py-2">
           Details
         </p>
       ),
@@ -260,7 +253,6 @@ const PokemonTable: React.FC<PokemonProps> = ({ pokemons, onSelect }) => {
         striped
         highlightOnHover
         dense
-        noDataComponent="Loading Pokémons..."
       />
     </div>
   );

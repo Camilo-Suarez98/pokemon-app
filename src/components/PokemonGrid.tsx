@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import type { PokemonType } from '../types/pokemon';
+import { toCapitalize } from '../utils/capitalize';
+import SwitchButton from './ui/SwitchButton';
 
 const PokemonGrid: React.FC<{ pokemons: PokemonType[], onSelect: (pokemon: PokemonType) => void }> = ({ pokemons, onSelect }) => {
   const [quantityOfPokemon, setQuantityOfPokemon] = useState(40);
@@ -16,24 +18,22 @@ const PokemonGrid: React.FC<{ pokemons: PokemonType[], onSelect: (pokemon: Pokem
           >
             <span className="text-gray-700 absolute top-4 left-4">#{pokemon.id}</span>
             <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
               alt={pokemon.name}
               className="w-24 h-24 m-auto block"
             />
             <div className="text-center">
-              <h3 className="text-capitalize text-gray-900">{pokemon.name}</h3>
+              <h3 className="text-capitalize text-gray-900">{toCapitalize(pokemon.name)}</h3>
             </div>
           </div>
         ))}
       </div>
       {pokemons.length > 0 && (
-        <button
-          className="px-4 py-2 mt-4 rounded-md bg-blue-500 text-white disabled:opacity-50"
+        <SwitchButton
+          textButton="Load More"
           onClick={() => setQuantityOfPokemon(quantityOfPokemon + 40)}
           disabled={quantityOfPokemon >= pokemons.length}
-        >
-          Load More
-        </button>
+        />
       )}
     </div>
   );
