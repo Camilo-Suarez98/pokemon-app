@@ -1,5 +1,6 @@
 import React from 'react';
 import { Heart, Shield, Sword, Zap } from 'lucide-react';
+import { lowAndHighStats } from '../utils/stats';
 
 import type { PokemonModalProps } from '../types/pokemon';
 
@@ -22,21 +23,10 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) => {
         return null;
     }
   };
-
-  const lowAndHighStats = (quantity: number) => {
-    if (quantity < 50) {
-      return "text-red-500"
-    } else if (quantity > 70) {
-      return "text-green-500"
-    } else {
-      return "text-black"
-    }
-  }
-
   return (
     <div className="fixed inset-0 w-full h-full flex justify-center items-center z-50 bg-black/80" onClick={onClose}>
       <div className="bg-white relative rounded-lg p-6 max-w-3xl w-11/12 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-        <button className="absolute top-2 right-2 bg-transparent border-none text-2xl cursor-pointer text-gray-500" onClick={onClose}>&times;</button>
+        <button className="absolute top-2 right-2 bg-transparent border-none text-2xl px-2 py-1 cursor-pointer text-gray-500 outline-none hover:text-gray-700" onClick={onClose}>&times;</button>
         <div className="flex items-center mb-4 gap-4">
           <h2 className="font-semibold text-2xl capitalize flex items-center gap-2">
             {pokemon.name}
@@ -55,7 +45,7 @@ const PokemonModal: React.FC<PokemonModalProps> = ({ pokemon, onClose }) => {
             <div>
               <div className="flex flex-wrap gap-2 justify-center mb-4">
                 {pokemon.types.map((type) => (
-                  <span key={type.slot} className={`type-badge ${type.type.name} text-white font-bold`}>
+                  <span key={type.slot} className={`${type.type.name} type-badge py-2 px-4 rounded-full capitalize text-white font-bold`}>
                     {type.type.name}
                   </span>
                 ))}

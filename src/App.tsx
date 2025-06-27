@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 
 import './App.css';
-import './components/styles.css';
 import fetchAllPokemon from './services/api';
-import PokemonGrid from './components/PokemonGrid';
 import type { PokemonType } from './types/pokemon';
+import PokemonGrid from './components/PokemonGrid';
+import PokemonTable from './components/PokemonTable';
+import PokemonModal from './components/PokemonModal';
 
 function App() {
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
+  const [selectedPokemon, setSelectedPokemon] = useState<PokemonType | null>(null);
 
   useEffect(() => {
     const loadPokemon = async () => {
@@ -19,8 +21,12 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className="font-bold">Pokémon Grid</h1>
-      <PokemonGrid pokemons={pokemons} />
+      <h1 className="font-bold">Pokémons </h1>
+      <PokemonTable pokemons={pokemons} onSelect={setSelectedPokemon} />
+      <PokemonGrid pokemons={pokemons} onSelect={setSelectedPokemon} />
+      {selectedPokemon && (
+        <PokemonModal pokemon={selectedPokemon} onClose={() => setSelectedPokemon(null)} />
+      )}
     </div>
   )
 }

@@ -20,8 +20,14 @@ export interface PokemonType {
   weight: number;
   sprites: {
     front_default: string;
+    other: {
+      official_artwork: {
+        front_default: string;
+      };
+    };
   };
   types: PokemonTypes[];
+  base_experience: number;
   stats: Stat[];
 }
 
@@ -29,8 +35,9 @@ export interface PokemonListResponseType {
   results: Array<PokemonType>;
 }
 
-export interface PokemonGridProps {
+export interface PokemonProps {
   pokemons: PokemonType[];
+  onSelect: (pokemon: PokemonType) => void;
 }
 
 export interface PokemonModalProps {

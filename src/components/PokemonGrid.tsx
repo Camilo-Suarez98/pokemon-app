@@ -1,19 +1,9 @@
 import React, { useState } from 'react';
 
-import type { PokemonType, PokemonGridProps } from '../types/pokemon';
-import PokemonModal from './PokemonModal.tsx';
+import type { PokemonType } from '../types/pokemon';
 
-const PokemonGrid: React.FC<PokemonGridProps> = ({ pokemons }) => {
-  const [selectedPokemon, setSelectedPokemon] = useState<PokemonType | null>(null);
+const PokemonGrid: React.FC<{ pokemons: PokemonType[], onSelect: (pokemon: PokemonType) => void }> = ({ pokemons, onSelect }) => {
   const [quantityOfPokemon, setQuantityOfPokemon] = useState(40);
-
-  const openModal = (pokemon: PokemonType) => {
-    setSelectedPokemon(pokemon);
-  };
-
-  const closeModal = () => {
-    setSelectedPokemon(null);
-  };
 
   return (
     <div className="p-5">
@@ -22,7 +12,7 @@ const PokemonGrid: React.FC<PokemonGridProps> = ({ pokemons }) => {
           <div
             key={pokemon.id}
             className="relative rounded-lg border p-6 bg-card text-card-foreground shadow-sm cursor-pointer hover:shadow-lg transition-shadow duration-200"
-            onClick={() => openModal(pokemon)}
+            onClick={() => onSelect(pokemon)}
           >
             <span className="text-gray-700 absolute top-4 left-4">#{pokemon.id}</span>
             <img
@@ -44,12 +34,6 @@ const PokemonGrid: React.FC<PokemonGridProps> = ({ pokemons }) => {
         >
           Load More
         </button>
-      )}
-      {selectedPokemon && (
-        <PokemonModal
-          pokemon={selectedPokemon}
-          onClose={closeModal}
-        />
       )}
     </div>
   );
