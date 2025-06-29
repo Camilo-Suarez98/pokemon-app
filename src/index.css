@@ -154,3 +154,82 @@ button:focus-visible {
 .type-badge.fairy {
   background: #EE99AC;
 }
+
+.type-badge-table {
+  padding: 5px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  text-transform: capitalize;
+}
+
+.type-badge-table.normal {
+  background: #A8A878;
+}
+
+.type-badge-table.fire {
+  background: #F08030;
+}
+
+.type-badge-table.water {
+  background: #6890F0;
+}
+
+.type-badge-table.electric {
+  background: #F8D030;
+}
+
+.type-badge-table.grass {
+  background: #78C850;
+}
+
+.type-badge-table.ice {
+  background: #98D8D8;
+}
+
+.type-badge-table.fighting {
+  background: #C03028;
+}
+
+.type-badge-table.poison {
+  background: #A040A0;
+}
+
+.type-badge-table.ground {
+  background: #E0C068;
+}
+
+.type-badge-table.flying {
+  background: #A890F0;
+}
+
+.type-badge-table.psychic {
+  background: #F85888;
+}
+
+.type-badge-table.bug {
+  background: #A8B820;
+}
+
+.type-badge-table.rock {
+  background: #B8A038;
+}
+
+.type-badge-table.ghost {
+  background: #705898;
+}
+
+.type-badge-table.dragon {
+  background: #7038F8;
+}
+
+.type-badge-table.dark {
+  background: #705848;
+}
+
+.type-badge-table.steel {
+  background: #B8B8D0;
+}
+
+.type-badge-table.fairy {
+  background: #EE99AC;
+}

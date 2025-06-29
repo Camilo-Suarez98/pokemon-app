@@ -55,19 +55,26 @@ const PokemonTable: React.FC<PokemonProps> = ({ pokemons, onSelect }) => {
           Type
         </p>
       ),
-      selector: (row) =>
-        row.types.map((t) => toCapitalize(t.type.name)).join(", "),
+      selector: (row) => row.types[0]?.type.name || '',
       sortable: true,
       width: "150px",
+      cell: (row) => (
+        <div className="flex gap-2">
+          {row.types.map((t) => (
+            <span key={t.type.name} className={`type-badge-table ${t.type.name}`}>
+              {toCapitalize(t.type.name)}
+            </span>
+          ))}
+        </div>
+      ),
       sortFunction: (a, b) => {
-        const aTypes = a.types.map((t) => t.type.name);
-        const bTypes = b.types.map((t) => t.type.name);
+        const aType = a.types[0]?.type.name || '';
+        const bType = b.types[0]?.type.name || '';
+        const aSecond = a.types[1]?.type.name || "";
+        const bSecond = b.types[1]?.type.name || "";
 
-        if (aTypes[0] < bTypes[0]) return -1;
-        if (aTypes[0] > bTypes[0]) return 1;
-
-        const aSecond = aTypes[1] ?? "";
-        const bSecond = bTypes[1] ?? "";
+        if (aType < bType) return -1;
+        if (aType > bType) return 1;
 
         if (aSecond < bSecond) return -1;
         if (aSecond > bSecond) return 1;
