@@ -1,13 +1,12 @@
-import type { PokemonType } from "../types/pokemon";
+import type { PokemonType, PokemonListItem } from "../types/pokemon";
 
-interface PokemonListItem {
-  name: string;
-  url: string;
-}
+const fetchAllPokemon = async (idOrName: string = ""): Promise<PokemonType[]> => {
+  const checkParamsUrl = idOrName === "" ?
+    "https://pokeapi.co/api/v2/pokemon?limit=151" :
+    `https://pokeapi.co/api/v2/pokemon/${idOrName}`;
 
-const fetchAllPokemon = async (): Promise<PokemonType[]> => {
   try {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+    const res = await fetch(checkParamsUrl);
     if (!res.ok) throw new Error("Error fetching pokemon list");
 
     const data = await res.json();

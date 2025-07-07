@@ -10,6 +10,7 @@ import Loader from './components/Loader';
 import SwitchButton from './components/ui/SwitchButton';
 
 function App() {
+  const [pokemonIdOrName, setPokemonIdOrName] = useState<string>("");
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,14 +20,14 @@ function App() {
     const loadPokemon = async () => {
       try {
         setIsLoading(true);
-        const pokemon = await fetchAllPokemon();
+        const pokemon = await fetchAllPokemon(pokemonIdOrName);
         setPokemons(pokemon);
       } finally {
         setIsLoading(false);
       }
     }
     loadPokemon();
-  }, []);
+  }, [pokemonIdOrName]);
 
   return (
     <div className="app">
