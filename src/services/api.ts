@@ -1,16 +1,19 @@
 import type { PokemonType, PokemonListItem } from "../types/pokemon";
 
 const fetchAllPokemon = async (idOrName: string = ""): Promise<PokemonType[]> => {
-  const checkParamsUrl = idOrName === "" ?
-    "https://pokeapi.co/api/v2/pokemon?limit=151" :
-    `https://pokeapi.co/api/v2/pokemon/${idOrName}`;
-
   try {
-    const res = await fetch(checkParamsUrl);
-    if (!res.ok) throw new Error("Error fetching pokemon list");
-
-    const data = await res.json();
-    const results: PokemonListItem[] = data.results;
+    if (idOrName) {
+      // Handle search by ID or name
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${idOrName.toLowerCase()}`);
+      if (!res.ok) throw new Error('Pokémon not found');
+      const data = await res.json();
+      return [data]; // Return as array to maintain consistent return type
+    }
+    
+    // Handle initial load with all Pokémon
+    const listRes = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+    const listData = await listRes.json();
+    const results: PokemonListItem[] = listData.results;
 
     const detailed = await Promise.all(
       results.map(async (pokemon) => {
@@ -22,7 +25,8 @@ const fetchAllPokemon = async (idOrName: string = ""): Promise<PokemonType[]> =>
 
     return detailed;
   } catch (error) {
-    throw new Error(`Error fetching pokemon list: ${error}`);
+    console.error('Error:', error);
+    throw new Error(error instanceof Error ? error.message : 'Failed to fetch Pokémon');
   }
 };
 
