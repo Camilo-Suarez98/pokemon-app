@@ -18,7 +18,7 @@ const PokemonGrid: React.FC<{ pokemons: PokemonType[], onSelect: (pokemon: Pokem
           >
             <span className="text-gray-700 absolute top-4 left-4">#{pokemon.id}</span>
             <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
               alt={pokemon.name}
               className="w-24 h-24 m-auto block"
             />

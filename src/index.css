@@ -156,7 +156,7 @@ button:focus-visible {
 }
 
 .type-badge-table {
-  padding: 5px;
+  padding: 7px 5px;
   border-radius: 20px;
   font-size: 0.8em;
   text-transform: capitalize;

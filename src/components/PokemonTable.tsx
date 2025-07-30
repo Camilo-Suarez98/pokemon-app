@@ -27,10 +27,10 @@ const PokemonTable: React.FC<PokemonProps> = ({ pokemons, onSelect }) => {
   const columns: TableColumn<PokemonType>[] = [
     {
       name: "Image",
-      selector: (row) => row.sprites.other.official_artwork.front_default,
+      selector: (row) => row.id,
       cell: (row) => (
         <img
-          src={row.sprites.front_default}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${row.id}.png`}
           alt={row.name}
           width={80}
           height={80}
@@ -61,7 +61,7 @@ const PokemonTable: React.FC<PokemonProps> = ({ pokemons, onSelect }) => {
       cell: (row) => (
         <div className="flex gap-2">
           {row.types.map((t) => (
-            <span key={t.type.name} className={`type-badge-table ${t.type.name}`}>
+            <span key={t.type.name} className={`type-badge-table ${t.type.name} text-white`}>
               {toCapitalize(t.type.name)}
             </span>
           ))}

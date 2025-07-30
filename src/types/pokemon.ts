@@ -26,6 +26,9 @@ export interface PokemonType {
   sprites: {
     front_default: string;
     other: {
+      home: {
+        front_default: string;
+      }
       official_artwork: {
         front_default: string;
       };
