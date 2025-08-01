@@ -3,14 +3,12 @@ import type { PokemonType, PokemonListItem } from "../types/pokemon";
 const fetchAllPokemon = async (idOrName: string = ""): Promise<PokemonType[]> => {
   try {
     if (idOrName) {
-      // Handle search by ID or name
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${idOrName.toLowerCase()}`);
       if (!res.ok) throw new Error('Pokémon not found');
       const data = await res.json();
-      return [data]; // Return as array to maintain consistent return type
+      return [data];
     }
-    
-    // Handle initial load with all Pokémon
+
     const listRes = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
     const listData = await listRes.json();
     const results: PokemonListItem[] = listData.results;
